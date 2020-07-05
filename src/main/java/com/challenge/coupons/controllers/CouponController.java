@@ -24,8 +24,10 @@ public class CouponController {
         List<String> itemsId = coupon.getItems_ids();
         float amount = coupon.getAmount();
         try {
-            CouponResponse couponItems = couponService.getCouponItems(itemsId, amount);
-            return new ResponseEntity<>(couponItems,HttpStatus.ACCEPTED);
+            List<String> couponItemsId = couponService.getCouponItems(itemsId, amount);
+            Float total = couponService.getCouponTotal(couponItemsId);
+            CouponResponse response= new CouponResponse(couponItemsId, total);
+            return new ResponseEntity<>(response,HttpStatus.ACCEPTED);
         }catch(Exception ex){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
