@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//@Repository
+@Repository
 public class ItemsRepositoryMock implements ItemsRepository{
 
     Map<String, Float> items = new HashMap<>();

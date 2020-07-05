@@ -14,15 +14,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Repository
+//@Repository
 public class ItemsRepositoryImpl implements ItemsRepository
 
 {
     @Override
     public Map<String, Float> getItems(List<String> itemsId) {
         Map<String, Float> items = null;
+        String itemsListParams = String.join(",",itemsId);
         try{
-            String jsonResponse = getRequest("https://api.mercadolibre.com/items?ids=MLA811601010,MLA816019440,MLA810645375");
+            String jsonResponse = getRequest("https://api.mercadolibre.com/items?ids="+ itemsListParams);
             JSONArray jArray = stringToJSONArray(jsonResponse);
             items = getItemsFromJson(jArray);
         }catch(IOException e){
@@ -61,9 +62,10 @@ public class ItemsRepositoryImpl implements ItemsRepository
         Map<String, Float> itemsMap = new HashMap<>();
         for (int i = 0;i<jsonArray.length();i++){
             JSONObject item  = jsonArray.getJSONObject(i);
-            JSONObject itemBody = item.getJSONObject("body");
-            itemsMap.put(itemBody.getString("id"),itemBody.getFloat("price"));
-
+            if(item.getInt("code") == 200){
+                JSONObject itemBody = item.getJSONObject("body");
+                itemsMap.put(itemBody.getString("id"),itemBody.getFloat("price"));
+            }
         }
         return itemsMap;
     }

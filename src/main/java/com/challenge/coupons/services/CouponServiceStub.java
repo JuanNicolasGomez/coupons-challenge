@@ -23,8 +23,10 @@ public class CouponServiceStub implements CouponService {
         float currentAmount = 0;
         for (Map.Entry<String, Float> item : items.entrySet()) {
             tempResult.clear();
-            tempResult.add(item.getKey());
-            currentAmount = item.getValue();
+            if (currentAmount + item.getValue() <= amount) {
+                tempResult.add(item.getKey());
+                currentAmount = item.getValue();
+            }
             for (Map.Entry<String, Float> entry : items.entrySet()) {
                 if (item!=entry && currentAmount + entry.getValue() <= amount){
                     currentAmount += entry.getValue();
