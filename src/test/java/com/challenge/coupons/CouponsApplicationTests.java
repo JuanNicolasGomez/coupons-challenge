@@ -58,7 +58,7 @@ class CouponsApplicationTests {
 		try {
 			Map<String, Float> items = new HashMap<>();
 			List<String> result = couponService.calculate(items, 100f);
-			Assertions.assertEquals(result, new ArrayList<>());
+			Assertions.assertEquals(new ArrayList<>(), result);
 		} catch (Exception ex) {
 			Assertions.fail();
 		}
@@ -67,14 +67,13 @@ class CouponsApplicationTests {
 	@Test
 	public void calculateTotal() {
 		try {
-			Map<String, Float> items = new HashMap<>();
 			List<String> itemsId = new ArrayList<>();
 			itemsId.add("MLA1");
 			itemsId.add("MLA2");
 			itemsId.add("MLA4");
 			itemsId.add("MLA5");
-			Float result = couponService.calculateTotal(items);
-			Assertions.assertEquals(result, 480f);
+			Float result = couponService.getCouponTotal(itemsId);
+			Assertions.assertEquals(480f, result );
 		} catch (Exception ex) {
 			Assertions.fail();
 		}
