@@ -1,5 +1,7 @@
 package com.challenge.coupons.services;
 
+import com.challenge.coupons.respositories.ItemsRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -8,6 +10,9 @@ import java.util.Map;
 
 @Service
 public class CouponServiceStub implements CouponService {
+    @Autowired
+    ItemsRepository itemsRepository;
+
 
     @Override
     public List<String> calculate(Map<String, Float> items, Float amount){
@@ -31,6 +36,13 @@ public class CouponServiceStub implements CouponService {
             }
         }
         return result;
+    }
+
+    @Override
+    public List<String> getCouponItems(List<String> itemsId, Float amount) {
+        Map<String, Float> items = itemsRepository.getItems(itemsId);
+        List<String> itemsResult = calculate( items, amount);
+        return itemsResult;
     }
 
 }

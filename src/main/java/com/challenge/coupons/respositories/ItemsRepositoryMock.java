@@ -1,14 +1,17 @@
 package com.challenge.coupons.respositories;
 
+import org.springframework.stereotype.Service;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Service
 public class ItemsRepositoryMock implements ItemsRepository{
 
     Map<String, Float> items = new HashMap<>();
 
-    public void ItemsRepositoryMock(){
+    public ItemsRepositoryMock(){
         items.put("MLA1",100f);
         items.put("MLA2",210f);
         items.put("MLA3",260f);
@@ -17,7 +20,7 @@ public class ItemsRepositoryMock implements ItemsRepository{
     }
 
     @Override
-    public Map<String, Float> getItems() {
+    public Map<String, Float> getItems(List<String> itemsId) {
         return items;
     }
 }
