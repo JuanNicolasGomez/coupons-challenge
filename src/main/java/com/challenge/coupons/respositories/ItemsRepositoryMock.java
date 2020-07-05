@@ -1,12 +1,12 @@
 package com.challenge.coupons.respositories;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Service
+//@Repository
 public class ItemsRepositoryMock implements ItemsRepository{
 
     Map<String, Float> items = new HashMap<>();
