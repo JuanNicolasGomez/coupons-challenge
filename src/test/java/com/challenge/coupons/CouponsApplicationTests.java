@@ -64,5 +64,21 @@ class CouponsApplicationTests {
 		}
 	}
 
+	@Test
+	public void calculateTotal() {
+		try {
+			Map<String, Float> items = new HashMap<>();
+			List<String> itemsId = new ArrayList<>();
+			itemsId.add("MLA1");
+			itemsId.add("MLA2");
+			itemsId.add("MLA4");
+			itemsId.add("MLA5");
+			Float result = couponService.calculateTotal(items);
+			Assertions.assertEquals(result, 480f);
+		} catch (Exception ex) {
+			Assertions.fail();
+		}
+	}
+
 
 }
