@@ -7,9 +7,9 @@ public class CouponResponse {
     public Float total;
 
     public CouponResponse(){}
-    public CouponResponse(List<String> itemsIds, Float amount ){
+    public CouponResponse(List<String> itemsIds, Float total ){
         this.items_ids = itemsIds;
-        this.total = amount;
+        this.total = total;
     }
 
     public List<String> getItems_ids() {

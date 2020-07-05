@@ -1,5 +1,6 @@
 package com.challenge.coupons.services;
 
+import com.challenge.coupons.models.CouponResponse;
 import com.challenge.coupons.respositories.ItemsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,10 +40,24 @@ public class CouponServiceStub implements CouponService {
     }
 
     @Override
-    public List<String> getCouponItems(List<String> itemsId, Float amount) {
+    public Float calculateTotal(Map<String, Float> items) {
+        Float total = 0f;
+        for (Map.Entry<String, Float> item : items.entrySet()) {
+            total += item.getValue();
+        }
+        return total;
+    }
+
+    @Override
+    public CouponResponse getCouponItems(List<String> itemsId, Float amount) {
         Map<String, Float> items = itemsRepository.getItems(itemsId);
         List<String> itemsResult = calculate( items, amount);
-        return itemsResult;
+        Float total = calculateTotal(items);
+        CouponResponse coupon = new CouponResponse(itemsResult, total);
+        return coupon;
     }
+
+
+
 
 }

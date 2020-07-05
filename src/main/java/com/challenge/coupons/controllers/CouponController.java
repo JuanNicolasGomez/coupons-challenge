@@ -1,6 +1,7 @@
 package com.challenge.coupons.controllers;
 
 import com.challenge.coupons.models.CouponRequest;
+import com.challenge.coupons.models.CouponResponse;
 import com.challenge.coupons.services.CouponService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,8 +24,8 @@ public class CouponController {
         List<String> itemsId = coupon.getItems_ids();
         float amount = coupon.getAmount();
         try {
-            List<String> items = couponService.getCouponItems(itemsId, amount);
-            return new ResponseEntity<>(items,HttpStatus.ACCEPTED);
+            CouponResponse couponItems = couponService.getCouponItems(itemsId, amount);
+            return new ResponseEntity<>(couponItems,HttpStatus.ACCEPTED);
         }catch(Exception ex){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
