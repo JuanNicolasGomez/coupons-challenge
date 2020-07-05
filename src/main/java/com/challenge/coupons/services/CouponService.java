@@ -8,6 +8,7 @@ import java.util.Map;
 public interface CouponService {
 
     List<String> calculate(Map<String, Float> items, Float amount);
-    CouponResponse getCouponItems(List<String> itemsId, Float amount);
+    List<String> getCouponItems(List<String> itemsId, Float amount);
+    Float getCouponTotal(List<String> itemsId);
     Float calculateTotal(Map<String, Float> items);
 }

@@ -49,13 +49,20 @@ public class CouponServiceStub implements CouponService {
     }
 
     @Override
-    public CouponResponse getCouponItems(List<String> itemsId, Float amount) {
+    public List<String> getCouponItems(List<String> itemsId, Float amount) {
         Map<String, Float> items = itemsRepository.getItems(itemsId);
         List<String> itemsResult = calculate( items, amount);
-        Float total = calculateTotal(items);
-        CouponResponse coupon = new CouponResponse(itemsResult, total);
-        return coupon;
+        return itemsResult;
     }
+
+    @Override
+    public Float getCouponTotal(List<String> itemsId){
+        Map<String, Float> couponItems = itemsRepository.getItems(itemsId);
+        Float total = calculateTotal(couponItems);
+        return total;
+    }
+
+
 
 
 
