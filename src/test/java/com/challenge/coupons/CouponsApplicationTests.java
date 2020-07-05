@@ -54,6 +54,22 @@ class CouponsApplicationTests {
 		}
 	}
 	@Test
+	public void calculateMaxValueProductsWithDeci() {
+		try {
+			Map<String, Float> items = new HashMap<>();
+			items.put("MLA2",6f);
+			items.put("MLA1",2f);
+			items.put("MLA3",40f);
+			items.put("MLA5",5f);
+			items.put("MLA4",1f);
+			List<String> result = couponService.calculate(items, 42f);
+			System.out.println(result);
+			assertThat(result, containsInAnyOrder("MLA2","MLA3"));
+		} catch (Exception ex) {
+			Assertions.fail();
+		}
+	}
+	@Test
 	public void calculateMaxValueProductsEmpty() {
 		try {
 			Map<String, Float> items = new HashMap<>();
@@ -77,6 +93,11 @@ class CouponsApplicationTests {
 		} catch (Exception ex) {
 			Assertions.fail();
 		}
+	}
+
+	@Test
+	public void jsonObjectToItems(){
+
 	}
 
 
