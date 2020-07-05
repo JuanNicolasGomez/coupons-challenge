@@ -3,12 +3,12 @@ package com.challenge.coupons.models;
 import java.util.List;
 import java.util.Map;
 
-public class Coupon {
+public class CouponRequest {
     private List<String> items_ids;
     public Float amount;
 
-    public Coupon(){}
-    public Coupon(List<String> itemsIds,Float amount ){
+    public CouponRequest(){}
+    public CouponRequest(List<String> itemsIds, Float amount ){
         this.items_ids = itemsIds;
         this.amount = amount;
     }

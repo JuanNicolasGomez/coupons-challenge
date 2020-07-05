@@ -1,6 +1,6 @@
 package com.challenge.coupons.controllers;
 
-import com.challenge.coupons.models.Coupon;
+import com.challenge.coupons.models.CouponRequest;
 import com.challenge.coupons.services.CouponService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +19,7 @@ public class CouponController {
     CouponService couponService;
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> controllersPostCoupon(@RequestBody Coupon coupon){
+    public ResponseEntity<?> controllersPostCoupon(@RequestBody CouponRequest coupon){
         List<String> itemsId = coupon.getItems_ids();
         float amount = coupon.getAmount();
         try {
