@@ -18,4 +18,4 @@ Body:
 }`
 
 # URL api
-http://ec2-52-86-159-60.compute-1.amazonaws.com:8080/
+http://ec2-52-86-159-60.compute-1.amazonaws.com:8080/coupon/
