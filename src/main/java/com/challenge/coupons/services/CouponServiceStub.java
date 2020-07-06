@@ -20,10 +20,10 @@ public class CouponServiceStub implements CouponService {
         List<String> result = new ArrayList<>();
         List<String> tempResult = new ArrayList<>();
         float currentMaxAmount = 0;
-        float currentAmount = 0;
         for (Map.Entry<String, Float> item : items.entrySet()) {
+            float currentAmount = 0;
             tempResult.clear();
-            if (currentAmount + item.getValue() <= amount) {
+            if (item.getValue() <= amount) {
                 tempResult.add(item.getKey());
                 currentAmount = item.getValue();
             }

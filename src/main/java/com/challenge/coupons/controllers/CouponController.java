@@ -19,6 +19,10 @@ public class CouponController {
     @Autowired
     CouponService couponService;
 
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<?> controllerGetOrders(){
+            return new ResponseEntity<>("Welcome to the coupon challenge API!",HttpStatus.ACCEPTED);
+    }
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> controllersPostCoupon(@RequestBody CouponRequest coupon){
         List<String> itemsId = coupon.getItems_ids();
