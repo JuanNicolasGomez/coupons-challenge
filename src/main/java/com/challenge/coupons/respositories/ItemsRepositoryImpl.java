@@ -1,8 +1,10 @@
 package com.challenge.coupons.respositories;
 
+import com.challenge.coupons.cache.CacheService;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.io.BufferedReader;
@@ -14,12 +16,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//@Repository
+@Repository
 public class ItemsRepositoryImpl implements ItemsRepository
 
 {
+
+    @Autowired
+    CacheService cacheService;
     @Override
-    public Map<String, Float> getItems(List<String> itemsId) {
+    public Map<String, Float> getItemsByIds(List<String> itemsId) {
         Map<String, Float> items = null;
         String itemsListParams = String.join(",",itemsId);
         try{
@@ -30,6 +35,23 @@ public class ItemsRepositoryImpl implements ItemsRepository
             e.printStackTrace();
         }
         return items;
+    }
+
+    @Override
+    public Float getItemPrice(String itemId) {
+        Float price=null;
+        if(cacheService.hasKey(itemId)){
+            return cacheService.getItem(itemId);
+        }
+        try{
+            String jsonResponse = getRequest("https://api.mercadolibre.com/items/"+ itemId);
+            JSONObject itemObject = new JSONObject(jsonResponse);
+            price = getPriceFromItemObject(itemObject);
+            cacheService.setItem(itemId,price);
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        return price;
     }
 
     public String getRequest(String url) throws IOException {
@@ -68,5 +90,13 @@ public class ItemsRepositoryImpl implements ItemsRepository
             }
         }
         return itemsMap;
+    }
+
+    public Float getPriceFromItemObject(JSONObject item){
+        Float price = 0f;
+        if(item.has("price")){
+            price = item.getFloat("price");
+        }
+        return price;
     }
 }

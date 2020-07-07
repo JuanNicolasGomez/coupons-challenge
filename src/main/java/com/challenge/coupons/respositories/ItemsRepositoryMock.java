@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Repository
+//@Repository
 public class ItemsRepositoryMock implements ItemsRepository{
 
     Map<String, Float> items = new HashMap<>();
@@ -20,7 +20,12 @@ public class ItemsRepositoryMock implements ItemsRepository{
     }
 
     @Override
-    public Map<String, Float> getItems(List<String> itemsId) {
+    public Map<String, Float> getItemsByIds(List<String> itemsId) {
         return items;
+    }
+
+    @Override
+    public Float getItemPrice(String itemId) {
+        return null;
     }
 }

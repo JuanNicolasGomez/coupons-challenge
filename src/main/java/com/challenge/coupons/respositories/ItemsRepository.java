@@ -5,5 +5,6 @@ import java.util.Map;
 
 public interface ItemsRepository {
 
-    Map<String,Float> getItems(List<String> itemsId);
+    Map<String,Float> getItemsByIds(List<String> itemsId);
+    Float getItemPrice(String itemId);
 }

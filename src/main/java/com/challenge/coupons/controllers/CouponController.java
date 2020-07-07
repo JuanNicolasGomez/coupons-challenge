@@ -19,6 +19,7 @@ public class CouponController {
     @Autowired
     CouponService couponService;
 
+
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<?> controllerGetOrders(){
             return new ResponseEntity<>("Welcome to the coupon challenge API!",HttpStatus.ACCEPTED);
@@ -29,10 +30,11 @@ public class CouponController {
         float amount = coupon.getAmount();
         try {
             List<String> couponItemsId = couponService.getCouponItems(itemsId, amount);
-            Float total = couponService.getCouponTotal(couponItemsId);
+            Float total = 0f;
             CouponResponse response= new CouponResponse(couponItemsId, total);
             return new ResponseEntity<>(response,HttpStatus.ACCEPTED);
         }catch(Exception ex){
+            ex.printStackTrace();
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -50,16 +51,28 @@ public class CouponServiceStub implements CouponService {
         return total;
     }
 
+    /*@Override
+    public List<String> getCouponItems(List<String> itemsId, Float amount) {
+        Map<String, Float> items = itemsRepository.getItemsByIds(itemsId);
+        List<String> itemsResult = calculate( items, amount);
+        return itemsResult;
+    }*/
+
     @Override
     public List<String> getCouponItems(List<String> itemsId, Float amount) {
-        Map<String, Float> items = itemsRepository.getItems(itemsId);
+        Map<String, Float> items = new HashMap<>();
+        for (String itemId : itemsId){
+            Float price = itemsRepository.getItemPrice(itemId);
+            items.put(itemId, price);
+        }
+
         List<String> itemsResult = calculate( items, amount);
         return itemsResult;
     }
 
     @Override
     public Float getCouponTotal(List<String> itemsId){
-        Map<String, Float> couponItems = itemsRepository.getItems(itemsId);
+        Map<String, Float> couponItems = itemsRepository.getItemsByIds(itemsId);
         Float total = calculateTotal(couponItems);
         return total;
     }
