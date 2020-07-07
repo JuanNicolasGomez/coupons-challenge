@@ -51,31 +51,30 @@ public class CouponServiceStub implements CouponService {
         return total;
     }
 
-    /*@Override
-    public List<String> getCouponItems(List<String> itemsId, Float amount) {
-        Map<String, Float> items = itemsRepository.getItemsByIds(itemsId);
-        List<String> itemsResult = calculate( items, amount);
-        return itemsResult;
-    }*/
-
     @Override
     public List<String> getCouponItems(List<String> itemsId, Float amount) {
-        Map<String, Float> items = new HashMap<>();
-        for (String itemId : itemsId){
-            Float price = itemsRepository.getItemPrice(itemId);
-            items.put(itemId, price);
-        }
-
+        Map<String, Float> items = getItemsWithPrice(itemsId);
         List<String> itemsResult = calculate( items, amount);
         return itemsResult;
     }
 
     @Override
     public Float getCouponTotal(List<String> itemsId){
-        Map<String, Float> couponItems = itemsRepository.getItemsByIds(itemsId);
-        Float total = calculateTotal(couponItems);
+        Map<String, Float> items = getItemsWithPrice(itemsId);
+        Float total = calculateTotal(items);
         return total;
     }
+
+    private Map<String, Float> getItemsWithPrice(List<String> itemsId) {
+        Map<String, Float> items = new HashMap<>();
+        for (String itemId : itemsId){
+            Float price = itemsRepository.getItemPrice(itemId);
+            items.put(itemId, price);
+        }
+        return items;
+    }
+
+
 
 
 

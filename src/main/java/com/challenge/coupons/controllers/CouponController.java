@@ -30,7 +30,7 @@ public class CouponController {
         float amount = coupon.getAmount();
         try {
             List<String> couponItemsId = couponService.getCouponItems(itemsId, amount);
-            Float total = 0f;
+            Float total = couponService.getCouponTotal(couponItemsId);
             CouponResponse response= new CouponResponse(couponItemsId, total);
             return new ResponseEntity<>(response,HttpStatus.ACCEPTED);
         }catch(Exception ex){

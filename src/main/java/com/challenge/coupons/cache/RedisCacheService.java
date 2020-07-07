@@ -20,6 +20,8 @@ public class RedisCacheService implements CacheService{
     public void setItem(String key, Float value) {
         try (Jedis jedis = JedisUtils.getPool().getResource()) {
             jedis.set(key, Float.toString(value));
+        }catch(Exception ex){
+            System.out.println("Cache exception: " + ex.getMessage());
         }
     }
 
@@ -29,6 +31,8 @@ public class RedisCacheService implements CacheService{
         try (Jedis jedis = JedisUtils.getPool().getResource()) {
             value = Float.parseFloat(jedis.get(key));
 
+        }catch(Exception ex){
+            System.out.println("Cache exception: " + ex.getMessage());
         }
         return value;
     }
@@ -38,6 +42,8 @@ public class RedisCacheService implements CacheService{
         boolean keyExists = false;
         try (Jedis jedis = JedisUtils.getPool().getResource()) {
             keyExists = jedis.exists(key);
+        }catch(Exception ex){
+            System.out.println("Cache exception: " + ex.getMessage());
         }
         return keyExists;
 
