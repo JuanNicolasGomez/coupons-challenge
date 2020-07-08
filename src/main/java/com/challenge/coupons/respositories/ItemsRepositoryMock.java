@@ -26,6 +26,7 @@ public class ItemsRepositoryMock implements ItemsRepository{
 
     @Override
     public Float getItemPrice(String itemId) {
-        return null;
+
+        return items.get(itemId);
     }
 }
