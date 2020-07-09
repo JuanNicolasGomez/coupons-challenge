@@ -24,7 +24,7 @@ Body:
 # Arquitectura
 
 Se usa un servicio de cache con Redis para mejorar el performance, guardando como llave valor el id del item i el precio.
-![alt text](http://url/to/img.png)
+![alt text](https://github.com/JuanNicolasGomez/coupons-challenge/blob/master/architecture_diagram.jpg)
 
 # URL api
 http://ec2-52-86-159-60.compute-1.amazonaws.com:8080/coupon/
@@ -32,6 +32,7 @@ http://ec2-52-86-159-60.compute-1.amazonaws.com:8080/coupon/
 # Pruebas de carga
 Usando 100 hilos y 1000 peticiones por hilo
 Se logro un throuput promedio de 2259 peticiones por segundo
+
 Con latencia promedio de 49 milisegundos por peticion
 
-![alt text](http://url/to/img.png)
+![alt text](https://github.com/JuanNicolasGomez/coupons-challenge/blob/master/load_test.png)
