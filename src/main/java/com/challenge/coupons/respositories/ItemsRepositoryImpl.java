@@ -41,9 +41,11 @@ public class ItemsRepositoryImpl implements ItemsRepository
     public Float getItemPrice(String itemId) {
         Float price=null;
         if(cacheService.hasKey(itemId)){
+            System.out.println("Cache");
             return cacheService.getItem(itemId);
         }
         try{
+            System.out.println("Getting from API");
             String jsonResponse = getRequest("https://api.mercadolibre.com/items/"+ itemId);
             JSONObject itemObject = new JSONObject(jsonResponse);
             price = getPriceFromItemObject(itemObject);
