@@ -5,7 +5,7 @@ Rest API made in Java that returns list of items a person can get that doesn´t 
 1. Clonar el repositorio
 2. Para ejecutar con maven, en la carpeta del repositorio ingresar los siguientes comandos 
 
-  `mvn complie`
+  `mvn compile`
   
   `mvn spring-boot:run`
   
