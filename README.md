@@ -11,6 +11,7 @@ Rest API made in Java that returns list of items a person can get that doesn´t 
   
  El servicio queda corriendo en el puerto 8080
  
+ **Nota:** el nivel 1 del challenge se encuentra en la clase coupons-challenge/src/main/java/com/challenge/coupons/services/CouponServiceStub.java
 
 # Endpoints
 **POST /coupon/**
@@ -23,7 +24,8 @@ Body:
 }`
 # Arquitectura
 
-Se usa un servicio de cache con Redis para mejorar el performance, guardando como llave valor el id del item i el precio.
+Se usa un servicio de cache con Redis para mejorar el performance, guardando como llave valor el id del item y el precio.
+
 ![alt text](https://github.com/JuanNicolasGomez/coupons-challenge/blob/master/architecture_diagram.jpg)
 
 # URL api
