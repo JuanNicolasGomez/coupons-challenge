@@ -32,7 +32,7 @@ Se usa un servicio de cache con Redis para mejorar el performance, guardando com
 http://ec2-100-25-29-239.compute-1.amazonaws.com:8080/coupon/
 
 # Pruebas de carga
-Usando 100 hilos y 1000 peticiones por hilo:
+Con 100000 peticiones:
 
 Se logro un throuput promedio de 2259 peticiones por segundo en **maquina local**
 
