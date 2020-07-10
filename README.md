@@ -32,9 +32,15 @@ Se usa un servicio de cache con Redis para mejorar el performance, guardando com
 http://ec2-100-25-29-239.compute-1.amazonaws.com:8080/coupon/
 
 # Pruebas de carga
-Usando 100 hilos y 1000 peticiones por hilo
-Se logro un throuput promedio de 2259 peticiones por segundo
+Usando 100 hilos y 1000 peticiones por hilo:
 
-Con latencia promedio de 49 milisegundos por peticion
+Se logro un throuput promedio de 2259 peticiones por segundo en **maquina local**
 
 ![alt text](https://github.com/JuanNicolasGomez/coupons-challenge/blob/master/load_test.png)
+
+En instancia **t2.micro** se logro un throuput de 181 peticiones por segundo
+
+![alt text](https://github.com/JuanNicolasGomez/coupons-challenge/blob/master/load_testAws.png)
+
+
+
