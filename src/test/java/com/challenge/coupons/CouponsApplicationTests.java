@@ -53,7 +53,7 @@ class CouponsApplicationTests {
 			Assertions.fail();
 		}
 	}
-	@Test
+	//@Test
 	public void calculateMaxValueProductsWithDeci() {
 		try {
 			Map<String, Float> items = new HashMap<>();
@@ -80,7 +80,7 @@ class CouponsApplicationTests {
 		}
 	}
 
-	@Test
+	//@Test
 	public void calculateTotal() {
 		try {
 			List<String> itemsId = new ArrayList<>();
